@@ -9,6 +9,10 @@ updates:
       interval: weekly
     cooldown:
       default-days: 7
+    ignore:
+      # Typen passend zur ältesten unterstützten Node-Version (engines: >=24), keine Major-Sprünge
+      - dependency-name: '@types/node'
+        update-types: ['version-update:semver-major']
     groups:
       entwicklung:
         dependency-type: development
