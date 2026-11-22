@@ -1,0 +1,7 @@
+# Caddy direkt auf dem Host (z. B. per apt installiert): /etc/caddy/Caddyfile
+# Server läuft lokal auf Port 8080 (compose.yaml mit SYNCHROTHEK_BIND=127.0.0.1, TRUST_PROXY=true).
+# HTTPS-Zertifikat holt Caddy automatisch, WebSockets werden ohne Zusatzkonfiguration durchgereicht.
+
+sync.example.org {
+	reverse_proxy 127.0.0.1:8080
+}

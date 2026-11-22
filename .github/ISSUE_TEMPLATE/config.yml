@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Sicherheitslücke melden
+    url: https://github.com/synchrothek/synchrothek-server/security/advisories/new
+    about: Bitte Sicherheitslücken nie als öffentliches Issue melden, sondern vertraulich (siehe SECURITY.md).

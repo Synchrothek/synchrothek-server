@@ -1,0 +1,8 @@
+node_modules/
+.env
+.DS_Store
+DEPLOYED_SHA
+.deploy.lock
+.env.tmp
+dist/
+*.tgz

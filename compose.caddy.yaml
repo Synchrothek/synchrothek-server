@@ -1,0 +1,37 @@
+# Synchrothek-Server + Caddy mit automatischem HTTPS (Let's Encrypt).
+# Voraussetzungen: DNS-Eintrag von DOMAIN zeigt auf diesen Host, Ports 80 und 443 sind frei.
+#   DOMAIN=sync.example.org docker compose -f compose.caddy.yaml up -d
+services:
+  synchrothek:
+    image: ${SYNCHROTHEK_IMAGE:-ghcr.io/synchrothek/synchrothek-server:latest}
+    restart: unless-stopped
+    environment:
+      TRUST_PROXY: "true"
+      MAX_CONNECTIONS_PER_IP: ${MAX_CONNECTIONS_PER_IP:-20}
+      MAX_ROOM_MEMBERS: ${MAX_ROOM_MEMBERS:-20}
+      MAX_ROOM_DURATION_MINUTES: ${MAX_ROOM_DURATION_MINUTES:-0}
+      IDLE_ROOM_TIMEOUT_MINUTES: ${IDLE_ROOM_TIMEOUT_MINUTES:-30}
+      EMPTY_ROOM_TTL_SECONDS: ${EMPTY_ROOM_TTL_SECONDS:-300}
+      RECONNECT_GRACE_SECONDS: ${RECONNECT_GRACE_SECONDS:-30}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-}
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    command: caddy reverse-proxy --from ${DOMAIN:?Bitte DOMAIN setzen, z. B. sync.example.org} --to synchrothek:8080
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - synchrothek
+
+volumes:
+  caddy_data:
+  caddy_config:

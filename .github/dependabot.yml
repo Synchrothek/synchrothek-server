@@ -1,0 +1,31 @@
+# Wöchentliche Updates für npm-Abhängigkeiten, GitHub Actions (SHA-Pins) und das Basis-Image.
+# Neue Versionen werden erst nach einigen Tagen vorgeschlagen, damit kompromittierte
+# Releases meist schon entdeckt und zurückgezogen sind.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      entwicklung:
+        dependency-type: development
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      actions:
+        patterns: ['*']
+
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7

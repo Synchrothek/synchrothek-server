@@ -1,0 +1,48 @@
+name: Fehler melden
+description: Etwas funktioniert nicht wie beschrieben.
+labels: [fehler]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Danke für die Meldung! **Sicherheitslücken bitte nicht hier melden**, sondern vertraulich wie in [SECURITY.md](https://github.com/synchrothek/synchrothek-server/blob/main/SECURITY.md) beschrieben.
+  - type: textarea
+    id: beschreibung
+    attributes:
+      label: Was ist passiert?
+      description: Was hast du erwartet, und was ist stattdessen passiert?
+    validations:
+      required: true
+  - type: textarea
+    id: schritte
+    attributes:
+      label: Schritte zum Nachstellen
+      placeholder: |
+        1. Server mit … gestartet
+        2. Raum erstellt …
+        3. …
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Image-Tag oder Paketversion, z. B. 0.6.1
+    validations:
+      required: true
+  - type: dropdown
+    id: betrieb
+    attributes:
+      label: Betriebsart
+      options:
+        - Docker Compose mit Caddy (compose.caddy.yaml)
+        - Docker Compose hinter eigenem Reverse Proxy
+        - Ohne Docker (Node.js)
+        - Als npm-Paket eingebettet
+        - Sonstiges
+  - type: textarea
+    id: logs
+    attributes:
+      label: Protokoll
+      description: Relevante Log-Ausgaben, ohne Tokens, IP-Adressen oder andere persönliche Daten.
+      render: text

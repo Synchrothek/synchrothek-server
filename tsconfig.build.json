@@ -1,0 +1,14 @@
+{
+  // Kompiliert das Paket nach dist/ (JavaScript + .d.ts). Node führt in node_modules kein
+  // Type Stripping aus, deshalb braucht ein einbindendes Projekt fertiges JavaScript.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "allowImportingTsExtensions": false,
+    "rewriteRelativeImportExtensions": true,
+    "declaration": true,
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  "include": ["src"]
+}

@@ -1,0 +1,13 @@
+node_modules
+dist
+*.tgz
+test
+examples
+.git
+.github
+.env
+.env.*
+DEPLOYED_SHA
+.deploy.lock
+*.md
+compose*.yaml

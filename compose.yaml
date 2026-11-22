@@ -1,0 +1,21 @@
+# Synchrothek-Server – nur der Server.
+# Für den Betrieb hinter einem vorhandenen Reverse Proxy (nginx, Apache, Caddy auf dem Host)
+# oder ohne Domain im Heimnetz. Mit automatischem HTTPS: compose.caddy.yaml
+services:
+  synchrothek:
+    image: ${SYNCHROTHEK_IMAGE:-ghcr.io/synchrothek/synchrothek-server:latest}
+    restart: unless-stopped
+    ports:
+      - "${SYNCHROTHEK_BIND:-0.0.0.0}:${SYNCHROTHEK_PORT:-8080}:8080"
+    environment:
+      TRUST_PROXY: ${TRUST_PROXY:-false}
+      MAX_CONNECTIONS_PER_IP: ${MAX_CONNECTIONS_PER_IP:-20}
+      MAX_ROOM_MEMBERS: ${MAX_ROOM_MEMBERS:-20}
+      MAX_ROOM_DURATION_MINUTES: ${MAX_ROOM_DURATION_MINUTES:-0}
+      IDLE_ROOM_TIMEOUT_MINUTES: ${IDLE_ROOM_TIMEOUT_MINUTES:-30}
+      EMPTY_ROOM_TTL_SECONDS: ${EMPTY_ROOM_TTL_SECONDS:-300}
+      RECONNECT_GRACE_SECONDS: ${RECONNECT_GRACE_SECONDS:-30}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-}
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]

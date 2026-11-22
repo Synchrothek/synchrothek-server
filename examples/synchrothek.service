@@ -1,0 +1,24 @@
+# Betrieb ohne Docker als systemd-Dienst: /etc/systemd/system/synchrothek.service
+#   useradd --system --no-create-home synchrothek
+#   git clone … /opt/synchrothek-server && cd /opt/synchrothek-server && npm ci --omit=dev
+#   systemctl daemon-reload && systemctl enable --now synchrothek
+
+[Unit]
+Description=Synchrothek-Server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=synchrothek
+WorkingDirectory=/opt/synchrothek-server
+ExecStart=/usr/bin/node src/index.ts
+Environment=HOST=127.0.0.1 PORT=8080 TRUST_PROXY=true
+Restart=on-failure
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

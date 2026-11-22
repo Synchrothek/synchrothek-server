@@ -1,0 +1,61 @@
+{
+  "name": "@synchrothek/server",
+  "version": "0.6.1",
+  "description": "WebSocket-Server für Synchrothek: synchrones gemeinsames Schauen von Mediathek-Inhalten",
+  "license": "AGPL-3.0-only",
+  "author": "Tobias-Pascal Mildenberger",
+  "homepage": "https://github.com/synchrothek/synchrothek-server#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/synchrothek/synchrothek-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/synchrothek/synchrothek-server/issues"
+  },
+  "keywords": [
+    "synchrothek",
+    "websocket",
+    "watch-party",
+    "sync",
+    "mediathek"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/mod.d.ts",
+      "default": "./dist/mod.js"
+    },
+    "./protocol": {
+      "types": "./dist/protocol.d.ts",
+      "default": "./dist/protocol.js"
+    }
+  },
+  "files": [
+    "dist",
+    "!dist/index.*",
+    "CHANGELOG.md"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "start": "node src/index.ts",
+    "dev": "node --watch src/index.ts",
+    "test": "node --test test/*.test.ts",
+    "typecheck": "tsc",
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "prepack": "npm run build"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "dependencies": {
+    "ws": "^8.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "@types/ws": "^8.18.2",
+    "typescript": "^7.0.2"
+  }
+}

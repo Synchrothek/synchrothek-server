@@ -1,0 +1,25 @@
+name: Wunsch oder Idee
+description: Vorschlag für eine neue Funktion oder Verbesserung.
+labels: [wunsch]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Sicherheitslücken bitte nicht hier melden, sondern vertraulich wie in [SECURITY.md](https://github.com/synchrothek/synchrothek-server/blob/main/SECURITY.md) beschrieben.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Worum geht es?
+      description: Welches Problem soll gelöst werden, oder was fehlt dir?
+    validations:
+      required: true
+  - type: textarea
+    id: vorschlag
+    attributes:
+      label: Vorschlag
+      description: Wie könnte es aussehen? Betrifft es das Protokoll (und damit die Extension)?
+  - type: textarea
+    id: alternativen
+    attributes:
+      label: Alternativen
+      description: Hast du andere Lösungen erwogen?
