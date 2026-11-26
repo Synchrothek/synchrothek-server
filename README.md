@@ -1,4 +1,9 @@
-# Synchrothek-Server
+<h1>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Synchrothek/synchrothek-server/main/.github/assets/kopf-dunkel.svg">
+    <img src="https://raw.githubusercontent.com/Synchrothek/synchrothek-server/main/.github/assets/kopf-hell.svg" alt="Synchrothek Server" height="56">
+  </picture>
+</h1>
 
 [![CI](https://github.com/synchrothek/synchrothek-server/actions/workflows/ci.yml/badge.svg)](https://github.com/synchrothek/synchrothek-server/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/@synchrothek/server)](https://www.npmjs.com/package/@synchrothek/server)
